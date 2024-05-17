@@ -1,0 +1,55 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display:flex;
+    justify-content: center;
+    background-color: rgb(246, 247, 248);
+}
+
+.title {
+    text-align: center;
+}
+
+#flowsheetContainer {
+    display: flex;
+    column-gap: 3px;
+}
+
+#yearContainer {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3px;
+}
+
+#semestersContainer {
+    display: flex;
+    flex-direction: row;
+    column-gap: 3px;
+}
+
+#semesterContainer {
+    display: flex;
+    flex-direction: column;
+    column-gap: 3px;
+    row-gap: 3px;
+}
+
+.year {
+    color: white;
+    text-align: center;
+    background-color: rgb(31, 107, 173);
+}
+
+.semester {
+    color: white;
+    background-color: rgb(31, 107, 173);
+    text-align: center;
+}
+
+.subject {
+    color: rgb(51, 51, 51);
+    width: 110px;
+    height: 110px;
+    background-color:rgb(222, 222, 222);
+    box-sizing:border-box; 
+    padding: 4px;
+}
