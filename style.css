@@ -49,7 +49,53 @@ body {
     color: rgb(51, 51, 51);
     width: 110px;
     height: 110px;
-    background-color:rgb(222, 222, 222);
-    box-sizing:border-box; 
+    background-color: rgb(222, 222, 222);
+    box-sizing: border-box;
     padding: 4px;
+    transition-duration: 500ms; /* Transition for background-color change */
+}
+
+    .subject::before {
+        content: "CS117";
+        font-weight: bold;
+    }
+
+#CS117::before {
+    content: "CS117";
+    font-weight: bold;
+}
+    /* We should work using ID not Class in this case*/
+
+    .subject:hover {
+        background-color: #bdd7ee;
+    }
+
+.subjectDirectPreRequisites {
+    color: rgb(51, 51, 51);
+    width: 110px;
+    height: 110px;
+    background-color: #f3a901;
+    box-sizing: border-box;
+    padding: 4px;
+    transition-duration: 500ms;
+}
+
+.subjectPostRequisiteSequence {
+    color: #fff;
+    width: 110px;
+    height: 110px;
+    background-color: #203864;
+    box-sizing: border-box;
+    padding: 4px;
+    transition-duration: 500ms;
+}
+
+.subjectPreRequisiteSequence {
+    color: #fff;
+    width: 110px;
+    height: 110px;
+    background-color: #ffff00;
+    box-sizing: border-box;
+    padding: 4px;
+    transition-duration: 500ms;
 }
