@@ -1,6 +1,7 @@
 // JavaScript source code
 let subjectID;
 
+const CSGraph = [];
 function getIdSubject(event) {
     subjectID = event.target.id;
     console.log('Hovered element ID:', subjectID);
@@ -16,7 +17,7 @@ function colorChang(subjectID) {
     // The arrays should be gotten from Database.
     const directPreRequisites = ['CS116'];
     const postrequisitesequence = ['CS263'];
-    const preRequisiteSequence = ['CS101'];
+    const preRequisiteSequence = [];
 
     if (subjectID === 'CS117') {
         // Direct pre-requisites

@@ -1,0 +1,156 @@
+﻿/* First Year : Semester 1 */
+#ENG100::before {
+    content: "ENG100";
+    font-weight: bold;
+}
+
+#GERL101::before {
+    content: "GERL101";
+    font-weight: bold;
+}
+
+#CS116::before {
+    content: "CS116";
+    font-weight: bold;
+}
+
+#CS1160::before {
+    content: "CS1160";
+    font-weight: bold;
+}
+
+#ARB100::before {
+    content: "ARB100";
+    font-weight: bold;
+}
+
+#MATH100::before {
+    content: "MATH100";
+    font-weight: bold;
+}
+
+
+
+/* First Year : Semester 2 */
+#NE101::before {
+    content: "NE101";
+    font-weight: bold;
+}
+
+
+#GERL102::before {
+    content: "GERL102";
+    font-weight: bold;
+}
+
+
+#CS117::before {
+    content: "CS117";
+    font-weight: bold;
+}
+
+
+#CS1170::before {
+    content: "CS1170";
+    font-weight: bold;
+}
+
+
+#CS201::before {
+    content: "CS201";
+    font-weight: bold;
+}
+
+
+#CE212::before {
+    content: "CE212";
+    font-weight: bold;
+}
+
+
+#CE2120::before {
+    content: "CE2120";
+    font-weight: bold;
+}
+
+
+
+/* Second Year : Semester 1 */
+#GERL201::before {
+    content: "GERL201";
+    font-weight: bold;
+}
+
+#MILS100::before {
+    content: "MILS100";
+    font-weight: bold;
+}
+
+#IEO121::before {
+    content: "IEO121";
+    font-weight: bold;
+}
+
+
+#CS264::before {
+    content: "CS264";
+    font-weight: bold;
+}
+
+
+#CS342::before {
+    content: "CS342";
+    font-weight: bold;
+}
+
+
+#CS355::before {
+    content: "CS355";
+    font-weight: bold;
+}
+
+
+#CS451::before {
+    content: "CS451";
+    font-weight: bold;
+}
+
+
+
+/* Second Year : Semester 2 */
+#GERL202::before {
+    content: "GERL202";
+    font-weight: bold;
+}
+
+#CE201::before {
+    content: "CE201";
+    font-weight: bold;
+}
+
+
+#CS222::before {
+    content: "CS222";
+    font-weight: bold;
+}
+
+
+#CS223::before {
+    content: "CS223";
+    font-weight: bold;
+}
+
+
+#CS263::before {
+    content: "CS263";
+    font-weight: bold;
+}
+
+
+#EE317::before {
+    content: "EE317";
+    font-weight: bold;
+}
+
+
+
