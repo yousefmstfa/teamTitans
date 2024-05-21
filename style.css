@@ -1,0 +1,140 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display:flex;
+    justify-content: center;
+    background-color: rgb(246, 247, 248);
+}
+
+p {
+    margin: 0px;
+}
+
+.title {
+    text-align: center;
+}
+
+.yearsContainer {
+    display: flex;
+    column-gap: 3px;
+}
+
+.yearContainer {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3px;
+}
+
+.semestersContainer {
+    display: flex;
+    column-gap: 3px;
+    row-gap: 3px;
+}
+
+.semesterContainer {
+    display: flex;
+    flex-direction: column;
+    column-gap: 3px;
+    row-gap: 3px;
+}
+
+.coursesContainer {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3px;
+}
+
+.year {
+    color: rgb(255, 255, 255);
+    background-color: rgb(31, 107, 173);    
+    text-align: center;
+}
+
+.germanYear {
+    display: flex;
+    align-items: center;
+    writing-mode: vertical-lr;
+    font-size: 2em;
+    color: rgb(51, 51, 51);
+    width: 120px;
+    height: 735px;
+    background-color:rgb(222, 222, 222);
+    box-sizing:border-box;
+    padding: 8px;
+    padding-top: 4px;
+}
+
+.semester {
+    color: rgb(255, 255, 255);
+    background-color: rgb(31, 107, 173);
+    text-align: center;
+}
+
+.course {
+    color: rgb(51, 51, 51);
+    width: 150px;
+    height: 120px;
+    background-color:rgb(222, 222, 222);
+    box-sizing:border-box; 
+    padding: 8px;
+    padding-top: 4px;
+}
+
+.course:hover {
+    background-color:rgb(189, 215, 238);
+    transition-duration: 250ms;
+}
+
+.preReqCourse {
+    color: rgb(51, 51, 51);
+    width: 150px;
+    height: 120px;
+    background-color:orange;
+    box-sizing:border-box; 
+    padding: 8px;
+    padding-top: 4px; 
+    transition-duration: 500ms;     
+}
+
+.postReqCourse {
+    color: rgb(255, 255, 255);
+    width: 150px;
+    height: 120px;
+    background-color:rgb(32, 56, 100);
+    box-sizing:border-box; 
+    padding: 8px;
+    padding-top: 4px;   
+    transition-duration: 500ms;   
+}
+
+.coReqCourse {
+    color: rgb(255, 255, 255);
+    width: 150px;
+    height: 120px;
+    background-color:rgb(130, 130, 130);
+    box-sizing:border-box; 
+    padding: 8px;
+    padding-top: 4px;
+    transition-duration: 500ms;
+}
+
+.preReqSequence {
+    color: rgb(51, 51, 51);
+    width: 150px;
+    height: 120px;
+    background-color:yellow;
+    box-sizing:border-box; 
+    padding: 8px;
+    padding-top: 4px;
+    transition-duration: 1000ms;
+}
+
+.postReqSequence {
+    color: white;
+    width: 150px;
+    height: 120px;
+    background-color:rgb(80, 112, 156);
+    box-sizing:border-box; 
+    padding: 8px;
+    padding-top: 4px;
+    transition-duration: 1000ms;
+}
