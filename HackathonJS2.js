@@ -1,5 +1,4 @@
 // JavaScript source code
-// array of object courses database
 const courses = [
     {
         id: "ENGL1001",
@@ -213,25 +212,27 @@ const courses = [
     }
 ];
 
-//preReqIds: [],
-//postReqIds: [],
-//coReqIds: []
+//courses.forEach(course => {
+//    let courseElement = document.getElementById(course.id);
 
-// mearged code.
-courses.forEach(course => {
-    let courseElement = document.getElementById(course.id);
+//    courseElement.insertAdjacentHTML('afterbegin', `
+//        <p class="courseInfo no-hover" id="${course.id}"><i class="fa-solid fa-info"></i></p>
+//        <p class="courseCode no-hover" id="${course.id}">${course.id}</p>
+//        <p class="courseName no-hover" id="${course.id}">${course.name}</p>
+//        <p class="requisiteArrow no-hover" id="requisiteArrow-${course.id}"></p>
+//        <p class="creditHours no-hover" id="${course.id}">${course.creditHours} Cr Hr</p>
+//    `);
+//});
 
-    courseElement.insertAdjacentHTML('afterbegin', `
-        <p class="courseInfo no-hover" id="${course.id}"><i class="fa-solid fa-info"></i></p>
-        <p class="courseCode no-hover" id="${course.id}">${course.id}</p>
-        <p class="courseName no-hover" id="${course.id}">${course.name}</p>
-        <p class="requisiteArrow no-hover" id="requisiteArrow-${course.id}"></p>
-        <p class="creditHours no-hover" id="${course.id}">${course.creditHours} Cr Hr</p>
-    `);
+document.querySelectorAll(".course").forEach(courseDOM => {
+    let courseObj = courses.find(courseObj => courseObj.id === courseDOM.id);
+    document.getElementById(courseDOM.id).innerHTML += `
+        <p class="courseInfo" id="${courseObj.id}"><i class="fa-sharp fa-solid fa-info fa-fade"></i></p>
+        <p class="courseCode" id="${courseObj.id}">${courseObj.id}</p>
+        <p class="courseName" id="${courseObj.id}">${courseObj.name}</p>
+        <p class="requisiteArrow" id="requisiteArrow-${courseObj.id}"></p>
+        <p class="creditHours" id="${courseObj.id}">${courseObj.creditHours} Cr Hr</p>`
 });
-
-
-
 
 
 let subjectID;
@@ -239,52 +240,65 @@ let Post = [];
 let Pre = [];
 let PRS = [];
 
-function getIdSubject(event) {
-    subjectID = event.target.id;
-
-    changePost(subjectID);
-    changePre(subjectID);
-    changePRS(PRS);
-
-
-    document.getElementById(subjectID).addEventListener('mouseout', () => {
-        for (let i = 0; i < Post.length; i++) {
-            //document.getElementById(Post[i]).classList.replace('postReqSequence', 'course');
-            document.getElementById(Post[i]).classList.remove('postReqSequence');
-            document.getElementById("requisiteArrow-" + Post[i]).innerHTML = '';
-        }
-        for (let i = 0; i < Pre.length; i++) {
-            //document.getElementById(Pre[i]).classList.replace('preReqCourse', 'course');
-            document.getElementById(Pre[i]).classList.remove('preReqCourse');
-            document.getElementById("requisiteArrow-" + Pre[i]).innerHTML = '';
-
-        }
-        for (let i = 0; i < PRS.length; i++) {
-            //document.getElementById(PRS[i]).classList.replace('preReqSequence', 'course');
-            document.getElementById(PRS[i]).classList.remove('preReqSequence');
-            document.getElementById("requisiteArrow-" + PRS[i]).innerHTML = '';
-        }
-        Post.length = 0;
-        Pre.length = 0;
-        PRS.length = 0;
-    });
-}
-
-//document.querySelectorAll('.course').forEach(element => {
-//    element.addEventListener('mouseover', getIdSubject);
-//});
-
-let timeoutId;
 
 document.querySelectorAll('.course').forEach(element => {
     element.addEventListener('mouseover', (event) => {
-        timeoutId = setTimeout(() => {
-            getIdSubject(event);
-        }, 500);
-    });
+        let subjectID = event.target.id;
 
-    element.addEventListener('mouseout', () => {
-        clearTimeout(timeoutId);
+        changePost(subjectID);
+        changePre(subjectID);
+        changePRS(subjectID);
+
+
+        if (co.has(subjectID)) {
+            document.getElementById(co.get(subjectID)).classList.add('coReqCourse');
+            document.getElementById("requisiteArrow-" + co.get(subjectID)).innerHTML = `<i class="fa-solid fa-chevron-up fa-bounce"></i>`;
+        }
+
+        // Update requisite arrows
+        Post.forEach(postId => {
+            document.getElementById("requisiteArrow-" + postId).style.animationName = 'arrowright';
+        });
+
+        Pre.forEach(preId => {
+            document.getElementById("requisiteArrow-" + preId).style.animationName = 'arrowright';
+        });
+
+        PRS.forEach(prsId => {
+            document.getElementById("requisiteArrow-" + prsId).style.animationName = 'arrowright';
+        });
+
+        document.getElementById(subjectID).addEventListener('mouseout', () => {
+            Post.forEach(postId => {
+                let postElem = document.getElementById(postId);
+                postElem.classList.remove('postReqSequence');
+                document.getElementById("requisiteArrow-" + postId).innerHTML = '';
+                document.getElementById("requisiteArrow-" + postId).style.animationName = ''; // Reset animation
+            });
+
+            Pre.forEach(preId => {
+                let preElem = document.getElementById(preId);
+                preElem.classList.remove('preReqCourse');
+                document.getElementById("requisiteArrow-" + preId).innerHTML = '';
+                document.getElementById("requisiteArrow-" + preId).style.animationName = ''; // Reset animation
+            });
+
+            PRS.forEach(prsId => {
+                let prsElem = document.getElementById(prsId);
+                prsElem.classList.remove('preReqSequence');
+                document.getElementById("requisiteArrow-" + prsId).innerHTML = '';
+                document.getElementById("requisiteArrow-" + prsId).style.animationName = ''; // Reset animation
+            });
+
+            Post.length = 0;
+            Pre.length = 0;
+            PRS.length = 0;
+
+            if (co.has(subjectID)) {
+                document.getElementById(co.get(subjectID)).classList.remove('coReqCourse');
+                document.getElementById("requisiteArrow-" + co.get(subjectID)).innerHTML = ``;
+            }
+        });
     });
 });
 
@@ -292,12 +306,10 @@ function getLocation(subjectID) {
     let l = 0;
     for (let i = 0; i < allCourses.length; i++) {
         if (allCourses[i].match(subjectID)) {
-            console.log("l = " + l);
             return i;
         }
         l++;
     }
-    console.log("l = -1");
     return -1;
 }
 function getPost(subjectID) { // Post-requisite
@@ -369,178 +381,20 @@ function changePRS() {
     }
 }
 
-//document.querySelectorAll(".course").forEach(course => {
-
-//    // we are iterating through each courseObject in the database and finding the object that has an id matching the html course's id
-//    let courseInDB = courses.find(currentObj => currentObj.id === course.id);
-
-//    // using the object's attributes, we create html elements within the html div such as courseinfobutton, code, name, requisiteArrow, credit hours
-//    document.getElementById(course.id).innerHTML += '<p class="courseInfo" id="' + courseInDB.id + '">( i )</p>';
-//    document.getElementById(course.id).innerHTML += '<p class="courseCode" id="' + courseInDB.id + '">' + courseInDB.id + '</p>';
-//    document.getElementById(course.id).innerHTML += '<p class="courseName" id="' + courseInDB.id + '">' + courseInDB.name + '</p>';
-//    document.getElementById(course.id).innerHTML += '<p class="requisiteArrow" id="' + "requisiteArrow-" + courseInDB.id + '"></p>';
-//    document.getElementById(course.id).innerHTML += '<p class="creditHours" id="' + courseInDB.id + '">' + courseInDB.creditHours + ' Cr Hr</p>';
-
-//    // handling mouse over events
-//    course.addEventListener('mouseover', event => {
-
-//        // find currently selected course object
-//        let selectedCourse = courses.find(course => course.id === event.target.id);
-
-//        // pre requisites mouse over
-//        if (selectedCourse.preReqIds.length > 0) { // check if selected course obj has direct pre requisites
-//            for (let i = 0; i < selectedCourse.preReqIds.length; i++) {
-//                // if selected course obj has direct pre requisites, cycle through each one and color orange
-//                document.getElementById(selectedCourse.preReqIds[i]).classList.add('preReqCourse');
-
-//                document.getElementById("requisiteArrow-" + selectedCourse.preReqIds[i]).innerHTML = "<";
-//                /*
-//                    we call a recursive function that does the following to the pre requisite sequence:
-//                    1) obtains the objects of the pre requisite ids array.
-//                    2) color them accordingly.
-//                    3) recall the same function until the next course object has no pre requisites
-//                */
-
-//                // pass the currently selected course's pre requsite id from the object array of pre req ids and begin its pre requisite sequence
-//                preReqSequence(selectedCourse.preReqIds[i]);
-//                function preReqSequence(currentId) {
-//                    //find the object that then contains its array of pre requisite ids
-//                    let preReqCourse = courses.find(course => course.id === currentId);
-//                    // check if there are pre requisites, if there are, then cycle through the object's array of pre req ids and color them
-//                    if (preReqCourse.preReqIds.length > 0) {
-//                        for (let i = 0; i < preReqCourse.preReqIds.length; i++) {
-//                            document.getElementById(preReqCourse.preReqIds[i]).classList.add('preReqSequence');
-//                            document.getElementById("requisiteArrow-" + preReqCourse.preReqIds[i]).innerHTML = "<<";
-
-//                            // call the recursive function again, passing in the object id of the pre prequisite object to cycle through ITS pre requisites
-//                            preReqSequence(preReqCourse.preReqIds[i]);
-//                        }
-//                    }
-//                }
-//            }
-//        }
-
-//        // post requisites mouse over
-//        if (selectedCourse.postReqIds.length > 0) { // check if selected course obj has post requisites
-//            // if selected course obj has direct post requisites, cycle through each one and color dark blue
-//            for (let i = 0; i < selectedCourse.postReqIds.length; i++) {
-
-//                document.getElementById(selectedCourse.postReqIds[i]).classList.add('postReqSequence');
-//                document.getElementById("requisiteArrow-" + selectedCourse.postReqIds[i]).innerHTML = ">>";
-//                // pass the currently selected course's post requsite id from the object array of post req ids and begin its post requisite sequence
-//                postReqSequence(selectedCourse.postReqIds[i]);
-//                function postReqSequence(currentId) {
-//                    //find the object that then contains its array of post requisite ids
-//                    let postReqCourse = courses.find(course => course.id === currentId);
-
-//                    /*
-//                        we call a recursive function that does the following to the post requisite sequence:
-//                        1) obtains the objects of the pre requisite ids array.
-//                        2) color them accordingly.
-//                        3) recall the same function until the next course object has no pre requisites
-//                    */
-
-//                    // check if there are post requisites, if there are, then cycle through the object's array of post req ids and color them, then call the recursive function again
-//                    if (postReqCourse.postReqIds.length > 0) {
-//                        for (let i = 0; i < postReqCourse.postReqIds.length; i++) {
-//                            document.getElementById(postReqCourse.postReqIds[i]).classList.add('postReqSequence');
-//                            document.getElementById("requisiteArrow-" + postReqCourse.postReqIds[i]).innerHTML = ">>";
-
-//                            // call the recursive function again, passing in the object id of the pre prequisite object to cycle through ITS pre requisites
-//                            postReqSequence(postReqCourse.postReqIds[i]);
-//                        }
-//                    }
-//                }
-//            }
-//        }
-
-//        if (selectedCourse.coReqIds.length > 0) // co requisites mouse over
-//            for (let i = 0; i < selectedCourse.coReqIds.length; i++) {
-//                document.getElementById(selectedCourse.coReqIds[i]).classList.add('coReqCourse');
-//                document.getElementById("requisiteArrow-" + selectedCourse.coReqIds[i]).innerHTML = "^";
-//            }
-//    });
-
-//    // handling mouse out events
-//    course.addEventListener('mouseout', event => {
-
-//        let selectedCourse = courses.find(course => course.id === event.target.id);
-
-//        // pre requisites mouse out
-//        if (selectedCourse.preReqIds.length > 0) { // check if selected course obj has direct pre requisites
-//            for (let i = 0; i < selectedCourse.preReqIds.length; i++) {
-//                // if selected course obj has direct pre requisites, cycle through each one and color orange
-//                document.getElementById(selectedCourse.preReqIds[i]).classList.remove('preReqCourse');
-//                document.getElementById("requisiteArrow-" + selectedCourse.preReqIds[i]).innerHTML = "";
-//                //document.getElementById(arrowId).textContent = "khara";
-//                /*
-//                    we call a recursive function that does the following to the pre requisite sequence:
-//                    1) obtains the objects of a pre requisite array.
-//                    2) uncolor them accordingly.
-//                    3) recall the same function until the next course object has no pre requisites
-//                */
-
-//                // pass the currently selected course's pre requsite id from the object array of pre req ids and begin its pre requisite sequence
-//                preReqSequence(selectedCourse.preReqIds[i]);
-//                function preReqSequence(currentId) {
-//                    //find the object that then contains its array of pre requisite ids
-//                    let preReqCourse = courses.find(course => course.id === currentId);
-//                    // check if there are pre requisites, if there are, then cycle through the object's array of pre req ids and color them, then call the recursive function again
-//                    if (preReqCourse.preReqIds.length > 0) {
-//                        for (let i = 0; i < preReqCourse.preReqIds.length; i++) {
-//                            document.getElementById(preReqCourse.preReqIds[i]).classList.remove('preReqSequence');
-//                            document.getElementById("requisiteArrow-" + preReqCourse.preReqIds[i]).innerHTML = "";
-//                            preReqSequence(preReqCourse.preReqIds[i]);
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        // post requisites mouse out
-//        if (selectedCourse.postReqIds.length > 0) { // check if selected course obj has post requisites
-//            // if selected course obj has direct post requisites, cycle through each one and color dark blue
-//            for (let i = 0; i < selectedCourse.postReqIds.length; i++) {
-
-//                document.getElementById(selectedCourse.postReqIds[i]).classList.remove('postReqSequence');
-//                document.getElementById("requisiteArrow-" + selectedCourse.postReqIds[i]).innerHTML = "";
-
-//                // pass the currently selected course's post requsite id from the object array of post req ids and begin its post requisite sequence
-//                postReqSequence(selectedCourse.postReqIds[i]);
-//                function postReqSequence(currentId) {
-//                    //find the object that then contains its array of post requisite ids
-//                    let postReqCourse = courses.find(course => course.id === currentId);
-
-//                    /*
-//                        we call a recursive function that does the following to the post requisite sequence:
-//                        1) obtains the objects of the pre requisite ids array.
-//                        2) uncolor them accordingly.
-//                        3) recall the same function until the next course object has no pre requisites
-//                    */
-
-//                    // check if there are post requisites, if there are, then cycle through the object's array of post req ids and color them, then call the recursive function again
-//                    if (postReqCourse.postReqIds.length > 0) {
-//                        for (let i = 0; i < postReqCourse.postReqIds.length; i++) {
-//                            document.getElementById(postReqCourse.postReqIds[i]).classList.remove('postReqSequence');
-//                            document.getElementById("requisiteArrow-" + postReqCourse.postReqIds[i]).innerHTML = "";
-
-//                            // call the recursive function again, passing in the object id of the pre prequisite object to cycle through ITS pre requisites
-//                            postReqSequence(postReqCourse.postReqIds[i]);
-//                        }
-//                    }
-//                }
-//            }
-//        }
-
-//        if (selectedCourse.coReqIds.length > 0) // co requisites
-//            for (let i = 0; i < selectedCourse.coReqIds.length; i++) {
-//                document.getElementById(selectedCourse.coReqIds[i]).classList.remove('coReqCourse');
-//                document.getElementById("requisiteArrow-" + selectedCourse.coReqIds[i]).innerHTML = "";
-//            }
-//    });
-//});
-
 let allCourses = ['ENGL1001', 'GERL101B1', 'CS116', 'CS1160', 'ARB100', 'MATH101', 'GERL102B1', 'NE101', 'MATH102', 'CS117', 'CS1170', 'CS201', 'CE212', 'CE2120', 'GERL201B1', 'CE201', 'CS222', 'CS223', 'CS263', 'EE317', 'GERL202B1', 'MILS100', 'IE0121', 'CS264', 'CS342', 'CS355', 'CS451', 'GERL301B1', 'CS323', 'CS332', 'CE352', 'CE357', 'CE3570', 'CS419', 'GERL302B1', 'ENGL1002', 'CS330', 'CS356', 'CS391', 'CS416', 'CS477', 'CS492'];
-//length = 41
+let co = new Map();
+
+// Add key-value pairs to the Map
+co.set('CS116', 'CS1160');
+co.set('CS117', 'CS1170');
+co.set('CS357', 'CS3570');
+co.set('CE212', 'CE2120');
+co.set('EE317', 'MATH102');
+co.set('CS1160', 'CS116');
+co.set('CS1170', 'CS117');
+co.set('CS3570', 'CS357');
+co.set('CE2120', 'CE212');
+co.set('MATH102', 'EE317');
 
 let graph =     [/*'ENGL1001', 'GERL101B1', 'CS116', 'CS1160', 'ARB100', 'MATH101', 'GERL102B1', 'NE101', 'MATH102', 'CS117', 'CS1170', 'CS201', 'CE212','CE2120', 'GERL201B1', 'CE201', 'CS222', 'CS223', 'CS263', 'EE317', 'GERL202B1', 'MILS100', 'IE0121', 'CS264', 'CS342', 'CS355', 'CS451', 'GERL301B1', 'CS323', 'CS332', 'CE352', 'CE357', 'CE3570', 'CS419', 'GERL302B1', 'ENGL1002', 'CS330', 'CS356', 'CS391', 'CS416', 'CS477', 'CS492'  */
 /*'ENGL1001'*/  ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'ENGL1002', '', '', '', '', '', ''], // 2
