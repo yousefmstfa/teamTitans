@@ -1,0 +1,253 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display:flex;
+    justify-content: center;
+    background-color: rgb(246, 247, 248);
+}
+
+p {
+    margin: 0px;
+}
+
+.courseCode {
+    font-weight: bold;
+}
+
+.title {
+    text-align: center;
+}
+
+.yearsContainer {
+    display: flex;
+    column-gap: 3px;
+}
+
+.yearContainer {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3px;
+}
+
+.semestersContainer {
+    display: flex;
+    column-gap: 3px;
+    row-gap: 3px;
+}
+
+.semesterContainer {
+    display: flex;
+    flex-direction: column;
+    column-gap: 3px;
+    row-gap: 3px;
+}
+
+.coursesContainer {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3px;
+}
+
+.year {
+    color: rgb(255, 255, 255);
+    background-color: rgb(31, 107, 173);    
+    text-align: center;
+}
+
+.germanYear {
+    display: flex;
+    align-items: center;
+    writing-mode: vertical-lr;
+    font-size: 2em;
+    color: rgb(51, 51, 51);
+    width: 120px;
+    height: 735px;
+    background-color:rgb(222, 222, 222);
+    position: relative;
+}
+
+#gyText {
+    position: absolute;
+    margin-top: 100px;
+    text-align: center;
+}
+
+.semester {
+    color: rgb(255, 255, 255);
+    background-color: rgb(31, 107, 173);
+    text-align: center;
+}
+
+.course {
+    color: rgb(51, 51, 51);
+    width: 150px;
+    height: 120px;
+    background-color:rgb(222, 222, 222);
+    box-sizing:border-box; 
+    padding: 8px;
+    padding-top: 4px;
+    position: relative;
+}
+
+
+.courseInfo {
+    color: rgb(51, 51, 51);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 8px;
+    margin-left: 8px;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.requisiteArrow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 4px;
+    margin-right: 8px;
+    font-weight: bold;
+    transition-duration: 250ms;
+}
+
+.creditHours {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 4px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    opacity: 0.5;
+}
+
+.electiveCourse {
+    color: rgb(51, 51, 51);
+    width: 150px;
+    height: 120px;
+    background-color:rgb(222, 222, 222);
+    box-sizing:border-box; 
+    padding: 8px;
+    padding-top: 4px;
+    position: relative;
+}
+
+.dropdownContainer {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.dropdownButton {
+    color: rgb(255, 255, 255);
+    background-color: rgb(90, 87, 122);
+    cursor: pointer;
+    border-radius: 5px;
+    transition-duration: 250ms;
+    box-sizing:border-box;
+    position: absolute;
+    padding: 6px;
+    padding-top: 0px;
+    padding-bottom: 2px;
+    right: 0;
+    margin-right: -3px;
+}
+
+.dropdownContent {
+    max-height: 300px;
+    margin-top: 23px;
+    width: 250px;
+    overflow-y: auto;
+    display: none;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 1000;
+    position: absolute;
+}
+
+.electiveOption {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    margin: 5px;
+    box-sizing: border-box;
+    padding: 8px;
+    padding-top: 4px;
+    position: relative;
+    border-radius: 5px;
+    transition-duration: 250ms;
+    cursor: pointer;
+}
+
+.electiveOptionCode {
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.electiveOptionCreditHours {
+    opacity: 0.5;
+    position: absolute;
+    right: 0;
+    margin-right: 8px;
+}
+
+.dropdownButton:hover {
+    background-color: rgb(115, 111, 155);
+}
+
+.dropdownButton:hover + .dropdownContent,
+.dropdownContent:hover {
+    display: block;
+}
+
+.electiveOption:hover {
+    background-color: rgb(31, 107, 173);
+    color: rgb(255, 255, 255);
+    transition-duration: 250ms;
+}
+
+.course:hover {
+    background-color:rgb(189, 215, 238);
+    transition-duration: 250ms; 
+}
+
+.course:hover .courseInfo {
+    opacity: 1;
+    transition-duration: 250ms;
+}
+
+.electiveCourse:hover {
+    background-color:rgb(189, 215, 238);
+    transition-duration: 250ms;     
+}
+
+.electiveCourse:hover .courseInfo {
+    opacity: 1;
+    transition-duration: 250ms;
+}
+
+.courseInfo:hover {
+    color: rgb(245, 170, 5);
+}
+
+.preReqCourse {
+    background-color:orange;
+    transition-duration: 500ms; 
+}
+
+.preReqSequence {
+    background-color:yellow;
+    transition-duration: 1000ms;
+}
+
+.postReqSequence {
+    color: rgb(255, 255, 255);
+    background-color:rgb(32, 56, 100); 
+    transition-duration: 500ms;   
+}
+
+.coReqCourse {
+    color: rgb(255, 255, 255);
+    background-color:rgb(130, 130, 130);
+    transition-duration: 500ms;
+}
